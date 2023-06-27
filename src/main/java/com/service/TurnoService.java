@@ -35,8 +35,8 @@ public class TurnoService {
         }
     }
 
-    public TurnoDTO guardarTurno(TurnoDTO turnoDTO){
-        Turno turnoGuardado = turnoRepository.save(turnoDtoAturno(turnoDTO));
+    public TurnoDTO guardarTurno(Turno turno){
+        Turno turnoGuardado = turnoRepository.save((turno));
         return turnoAturnoDTO(turnoGuardado);
     }
 

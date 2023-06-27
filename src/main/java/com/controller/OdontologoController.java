@@ -1,6 +1,8 @@
 package com.controller;
 
 import com.entity.Odontologo;
+import com.exceptions.BadRequestException;
+import com.exceptions.ResourceNotFoundException;
 import com.service.OdontologoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/odontologos")
-
 public class OdontologoController {
     @Autowired
     private OdontologoService odontologoService;
@@ -28,23 +29,23 @@ public class OdontologoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Odontologo> buscarOdontologoPorId(@PathVariable Long id){
+    public ResponseEntity<Odontologo> buscarOdontologoPorId(@PathVariable Long id) throws BadRequestException {
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarOdontologo(id);
         if(odontologoBuscado.isPresent()){
             return ResponseEntity.ok(odontologoBuscado.get());
         } else {
-            return ResponseEntity.notFound().build();
+            throw new BadRequestException("El ID ingresado no es correcto");
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarOdontologo(@PathVariable Long id){
+    public ResponseEntity<String> eliminarOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarOdontologo(id);
         if (odontologoBuscado.isPresent()){
             odontologoService.eliminarOdontologo(id);
             return ResponseEntity.ok("Se elimino el odontologo con ID: " + id + " correctamente");
         } else {
-            return ResponseEntity.badRequest().body("No se encontró el odontologo con ID: " + id);
+            throw new ResourceNotFoundException("No se encontró el ID: " + id);
         }
     }
 
