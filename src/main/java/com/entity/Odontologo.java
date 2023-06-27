@@ -17,9 +17,9 @@ public class Odontologo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(nullable = false)
     private String nombre;
-    @Column
+    @Column(nullable = false)
     private String apellido;
     @Column(unique = true, nullable = false)
     private String matricula;

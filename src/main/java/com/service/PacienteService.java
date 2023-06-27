@@ -1,6 +1,5 @@
 package com.service;
 
-import com.entity.Odontologo;
 import com.entity.Paciente;
 import com.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
