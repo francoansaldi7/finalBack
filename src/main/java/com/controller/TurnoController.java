@@ -1,14 +1,12 @@
 package com.controller;
 
 import com.dto.TurnoDTO;
-import com.entity.Paciente;
 import com.entity.Turno;
 import com.exceptions.BadRequestException;
 import com.exceptions.ResourceNotFoundException;
 import com.service.OdontologoService;
 import com.service.PacienteService;
 import com.service.TurnoService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

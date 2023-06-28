@@ -1,4 +1,4 @@
-package com.service;
+package com.security;
 
 import com.entity.AppUser;
 import com.entity.AppUserRole;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements ApplicationRunner {
-
     private UserRepository userRepository;
 
     @Autowired
@@ -21,13 +20,15 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-        BCryptPasswordEncoder passwordEncoder1 = new BCryptPasswordEncoder();
-        String hashedPassword1 = passwordEncoder1.encode("password1");
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String pass = "password";
+        String encodedPassword = passwordEncoder.encode("password");
 
         BCryptPasswordEncoder passwordEncoder2 = new BCryptPasswordEncoder();
-        String hashedPassword2 = passwordEncoder2.encode("password2");
+        String pass1 = "password1";
+        String encodedPassword2 = passwordEncoder2.encode("password2");
 
-        userRepository.save(new AppUser("Joaquin", "joaquin123", "joaquin@gmail.com", hashedPassword1, AppUserRole.ADMIN));
-        userRepository.save(new AppUser("Federica", "federica123", "federica@gmail.com", hashedPassword2, AppUserRole.USER));
+        userRepository.save(new AppUser("Joaquin", "joaquin123", "joaquin@gmail.com", encodedPassword, AppUserRole.ADMIN));
+        userRepository.save(new AppUser("Federica", "federica123", "federica@gmail.com", encodedPassword2, AppUserRole.USER));
     }
 }

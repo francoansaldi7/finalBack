@@ -1,5 +1,6 @@
-package com.service;
+package com.security;
 
+import com.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,28 +13,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends SecurityConfig {
+public class SecurityConfiguration extends SecurityConfig {
 
-    public WebSecurityConfig(String config) {
+    public SecurityConfiguration(String config) {
         super(config);
     }
-
     @Autowired
     private AppUserService userService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    @Override
+    @Autowired
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf()
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/users/**").hasRole("ADMIN")
-                .anyRequest().authenticated().and().formLogin();
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .and().logout();
     }
 
-    @Override
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(daoAuthenticationProvider());
     }
@@ -43,7 +44,6 @@ public class WebSecurityConfig extends SecurityConfig {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder);
         provider.setUserDetailsService(userService);
-
         return provider;
     }
 }
