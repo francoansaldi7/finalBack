@@ -16,11 +16,15 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appUser_sequence")
     private long id;
 
+    @Column
     private String name;
+    @Column
     private String username;
+    @Column
     private String email;
+    @Column
     private String password;
-
+    @Column
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
 

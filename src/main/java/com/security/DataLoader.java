@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements ApplicationRunner {
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -22,13 +23,16 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception{
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String pass = "password";
-        String encodedPassword = passwordEncoder.encode("password");
+        String encodedPassword = passwordEncoder.encode(pass);
 
-        BCryptPasswordEncoder passwordEncoder2 = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder passwordEncoderAdmin = new BCryptPasswordEncoder();
         String pass1 = "password1";
-        String encodedPassword2 = passwordEncoder2.encode("password2");
+        String encodedPasswordAdmin = passwordEncoderAdmin.encode(pass1);
 
-        userRepository.save(new AppUser("Joaquin", "joaquin123", "joaquin@gmail.com", encodedPassword, AppUserRole.ADMIN));
-        userRepository.save(new AppUser("Federica", "federica123", "federica@gmail.com", encodedPassword2, AppUserRole.USER));
+        AppUser user = new AppUser("testUser", "testUser", "testUser@gmail.com", encodedPassword, AppUserRole.USER);
+        AppUser userAdmin = new AppUser("adminUser", "adminUser", "adminUser@gmail.com", encodedPasswordAdmin, AppUserRole.ADMIN);
+
+       userRepository.save(user);
+       userRepository.save(userAdmin);
     }
 }
