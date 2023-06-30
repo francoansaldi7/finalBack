@@ -17,7 +17,7 @@ public class OdontologoController {
     @Autowired
     private OdontologoService odontologoService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<Odontologo> guardarOdontologo (@RequestBody Odontologo odontologo){
         return ResponseEntity.ok(odontologoService.guardarOdontologo(odontologo));
     }

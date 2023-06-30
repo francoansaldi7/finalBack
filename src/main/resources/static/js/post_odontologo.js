@@ -10,7 +10,7 @@ formulario.addEventListener('submit', function (event) {
 
     };
 
-    const url = '/odontologos';
+    const url = '/odontologos/guardar';
     const settings = {
         method: 'POST',
         headers: {
