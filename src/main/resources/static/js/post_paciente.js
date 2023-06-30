@@ -19,7 +19,7 @@ window.addEventListener('load', function () {
 
         };
 
-        const url = '/pacientes';
+        const url = '/pacientes/guardar';
         const settings = {
             method: 'POST',
             headers: {

@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
             fecha: document.querySelector('#fecha').value,
     };
 
-    const url = '/turnos';
+    const url = '/turnos/guardar';
     const settings = {
         method: 'POST',
         headers: {

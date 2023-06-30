@@ -17,7 +17,7 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<Paciente> registrarPaciente (@RequestBody Paciente paciente){
         return ResponseEntity.ok(pacienteService.guardarPaciente(paciente));
     }

@@ -18,7 +18,7 @@ public class DomicilioController {
     @Autowired
     private DomicilioService domicilioService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<Domicilio> guardarDomicilio(@RequestBody Domicilio domicilio){
         return ResponseEntity.ok(domicilioService.guardarDomicilio(domicilio));
     }

@@ -24,7 +24,7 @@ public class TurnoController {
     @Autowired
     private OdontologoService odontologoService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<TurnoDTO> guardarTurno (@RequestBody Turno turno) throws BadRequestException {
         if (odontologoService.buscarOdontologo(turno.getOdontologo().getId()) != null && pacienteService.buscarPaciente(turno.getPaciente().getId()) != null){
             return ResponseEntity.ok(turnoService.guardarTurno(turno));
