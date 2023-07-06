@@ -38,7 +38,7 @@ public class DomicilioController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarDomicilio(@PathVariable Long id) throws ResourceNotFoundException{
         Optional<Domicilio> domicilioBuscado = domicilioService.buscarDomicilio(id);
         if (domicilioBuscado.isPresent()){

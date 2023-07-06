@@ -2,6 +2,7 @@ package com.example.FINALANSALDIFRANCO;
 
 import com.example.FINALANSALDIFRANCO.entity.Domicilio;
 import com.example.FINALANSALDIFRANCO.entity.Paciente;
+import com.example.FINALANSALDIFRANCO.exceptions.ResourceNotFoundException;
 import com.example.FINALANSALDIFRANCO.service.PacienteService;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class PacienteServiceTest {
 
     @Test
     @Order(1)
-    void guardarPaciente(){
+    public void guardarPaciente(){
         Paciente pacienteAguardar = new Paciente("pacienteNombre", "pacienteApellido", "123456", LocalDate.of(2023, 4, 20), new Domicilio("calleTest", "123", "localidadTest", "provinciaTest"), "emailTest@test.com");
         Paciente pacienteGuardado = pacienteService.guardarPaciente(pacienteAguardar);
         assertEquals(1L, pacienteGuardado.getId());
@@ -29,10 +30,10 @@ class PacienteServiceTest {
 
     @Test
     @Order(2)
-    void buscarPaciente(){
+    public void buscarPaciente() throws ResourceNotFoundException {
         Long idAbuscar = 1L;
         Optional<Paciente> pacienteBuscado = pacienteService.buscarPaciente(idAbuscar);
-        assertTrue(pacienteBuscado.isPresent());
+        assertEquals(true, pacienteBuscado.isPresent());
     }
 
     @Test

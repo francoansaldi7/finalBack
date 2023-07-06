@@ -22,15 +22,15 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception{
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String userPassword = "1234";
+        String userPassword = "user";
         String encodedPassword = passwordEncoder.encode(userPassword);
 
         BCryptPasswordEncoder passwordEncoderAdmin = new BCryptPasswordEncoder();
-        String adminPass = "123456";
+        String adminPass = "admin";
         String encodedPasswordAdmin = passwordEncoderAdmin.encode(adminPass);
 
-        AppUser user = new AppUser("testUser", "tUsername", "testUser@test.com", encodedPassword, AppUserRole.USER);
-        AppUser adminUser = new AppUser("adminUser", "aUsername", "adminUser@admin.com", encodedPasswordAdmin, AppUserRole.ADMIN);
+        AppUser user = new AppUser("testUser", "tUsername", "test@test.com", encodedPassword, AppUserRole.USER);
+        AppUser adminUser = new AppUser("adminUser", "aUsername", "admin@admin.com", encodedPasswordAdmin, AppUserRole.ADMIN);
 
         userRepository.save(user);
         userRepository.save(adminUser);

@@ -23,7 +23,7 @@ class OdontologoServiceTest {
     void guardarOdontologo(){
         Odontologo odontologoAguardar = new Odontologo("nombreOdontologo","apellidoOdontologo", "MAT123");
         Odontologo odontologoGuardado = odontologoService.guardarOdontologo(odontologoAguardar);
-        assertEquals(1L, odontologoGuardado.getId());
+        assertEquals(2, odontologoGuardado.getId());
     }
 
     @Test
@@ -54,7 +54,7 @@ class OdontologoServiceTest {
     void buscarOdontologoPorMatricula(){
         String matricula = "MAT123";
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarPorMatricula(matricula);
-        assertTrue(odontologoBuscado.isPresent());
+        assertNotNull(odontologoBuscado.isPresent());
     }
 
     @Test

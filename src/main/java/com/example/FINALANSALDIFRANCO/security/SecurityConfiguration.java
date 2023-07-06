@@ -36,7 +36,6 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(daoAuthenticationProvider());
     }
