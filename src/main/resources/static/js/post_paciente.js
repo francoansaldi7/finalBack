@@ -1,9 +1,11 @@
+console.log("test");
 window.addEventListener('load', function () {
 
     const formulario = document.querySelector('#add_new_paciente');
 
     formulario.addEventListener('submit', function (event) {
 
+    event.preventDefault();
         const formData = {
             apellido: document.querySelector('#apellido').value,
             nombre: document.querySelector('#nombre').value,
@@ -19,7 +21,7 @@ window.addEventListener('load', function () {
 
         };
 
-        const url = '/pacientes';
+        const url = '/pacientes/guardar';
         const settings = {
             method: 'POST',
             headers: {
